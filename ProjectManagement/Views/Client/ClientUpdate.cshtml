@@ -1,0 +1,75 @@
+﻿@model ProjectManagement.Models.Client
+@{
+    ViewBag.Title = "ClientUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var projects = ViewData["projects"] as List<ProjectManagement.Models.Project>;
+
+}
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            ADD CLIENT
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("UpdateClient", "Client", FormMethod.Post, new { enctype = "multipart/form-data", id = "client", data_toggle = "validator" }))
+            {
+                <input type="hidden" class="form-control" id="Id" required="required" name="Id" size="74" value="@Model.Id">
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Company Name<br>
+                        <input type="text" class="form-control" id="CompanyName" required="required" name="CompanyName" size="74" value="@Model.CompanyName">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Contact No<br>
+                        <input type="text" class="form-control" id="ContactNo" required="required" name="ContactNo" size="74" value="@Model.ContactNo">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Email<br>
+                        <input type="text" class="form-control" id="Email" required="required" name="Email" size="74" value="@Model.Email">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Address<br>
+                        <input type="text" class="form-control" id="Address" required="required" name="Address" size="74" value="@Model.Address">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Website<br>
+                        <input type="text" class="form-control" id="Website" required="required" name="Website" size="74" value="@Model.Website">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Select Project<br>
+                        <select class="form-control" id="ProjectId" name="ProjectId">
+                            @foreach (var item in projects)
+                            {
+                                <option selected="@item.Id" value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="UPDATE CLIENT" />
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+

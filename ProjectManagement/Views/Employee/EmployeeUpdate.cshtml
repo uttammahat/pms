@@ -1,0 +1,99 @@
+﻿@model ProjectManagement.Models.Employee
+@{
+    ViewBag.Title = "EmployeeUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var departments = ViewData["departments"] as List<ProjectManagement.Models.Department>;
+}
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            EMPLOYEE INFORMATION
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("UpdateEmployee", "Employee", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <input type="hidden" value="@Model.Id" name="Id" />
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        First Name<br>
+                        <input type="text" class="form-control" id="FirstName" required="required" name="FirstName" size="74" value="@Model.FirstName">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Middle Name<br>
+                        <input type="text" class="form-control" id="MiddleName" required="required" name="MiddleName" size="74" value="@Model.MiddleName">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Last Name<br>
+                        <input type="text" class="form-control" id="LastName" required="required" name="LastName" size="74" value="@Model.LastName">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Email*<br>
+                        <input type="email" class="form-control" id="Email" required="required" name="Email" size="74" value="@Model.Email">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Contact*<br>
+                        <input type="text" class="form-control" id="Contact" required="required" name="Contact" size="74" value="@Model.Contact">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Join Date*<br>
+                        @*<input type="date" class="form-control" id="JoinDate" required="required" name="JoinDate" size="74" value="@Model.JoinDate">*@
+                        @Html.TextBoxFor(x => x.JoinDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Leave Date<br>
+                        @*<input type="date" class="form-control" id="LeaveDate" name="LeaveDate" size="74" value="@Model.LeaveDate">*@
+                        @Html.TextBoxFor(x => x.LeaveDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Date of birth*<br>
+                        @*<input type="date" class="form-control" id="DateOfBorth" required="required" name="DateOfBorth" size="74" value="@Model.DateOfBorth">*@
+                        @Html.TextBoxFor(x => x.DateOfBorth, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Department*<br>
+                        <select class="form-control" id="DepartmentId" name="DepartmentId">
+                            <option selected>Select Department</option>
+                            @foreach (var item in departments)
+                            {
+                                <option value="@item.Id" selected="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="UPDATE" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

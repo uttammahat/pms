@@ -1,0 +1,174 @@
+﻿@model List<ProjectManagement.Models.Contractor>
+@{
+    ViewBag.Title = "AddContract";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var clients = ViewData["clients"] as List<ProjectManagement.Models.Client>;
+    var projects = ViewData["projects"] as List<ProjectManagement.Models.Project>;
+}
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            CONTRACT INFORMATION
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("SaveContract", "Contract", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Project<br>
+                        <select class="form-control" id="ProjectId" name="ProjectId">
+                            @foreach (var item in projects)
+                            {
+                                <option value="@item.Id">@item.Title</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Representive Details Section -->
+
+                <b>Representive Details</b>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Representive Name<br>
+                        <input type="text" class="form-control" id="RepresentiveName" required="required" name="RepresentiveName" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Representive Contact<br>
+                        <input type="text" class="form-control" id="RepresentiveContact" required="required" name="RepresentiveContact" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Representive Email<br>
+                        <input type="text" class="form-control" id="RepresentiveEmail" required="required" name="RepresentiveEmail" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Representive Phone<br>
+                        <input type="text" class="form-control" id="RepresentivePhone" required="required" name="RepresentivePhone" size="74">
+                    </div>
+                </div>
+
+
+                <!-- Representive Details Section -->
+
+                <!-- Address Details Section -->
+
+                <b>Address Details</b>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Street<br>
+                        <input type="text" class="form-control" id="Street" required="required" name="AddressDetail.Street" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        City<br>
+                        <input type="text" class="form-control" id="City" required="required" name="AddressDetail.City" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Provience<br>
+                        <input type="text" class="form-control" id="Province" required="required" name="AddressDetail.Province" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Country<br>
+                        <input type="text" class="form-control" id="Country" required="required" name="AddressDetail.Country" size="74">
+                    </div>
+                </div>
+
+                <!-- Address Details Section End -->
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Duration<br>
+                        <input type="date" class="form-control" id="Duration" required="required" name="Duration" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Description<br>
+                        <textarea type="text" class="form-control" id="Description" required="required" name="Description"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="SAVE" />
+                    </div>
+                </div>
+            }
+
+            <div class="col-md-12 form-fill">
+                <div class="col-md-4 button-form">
+                    <a href="@Url.Action("Next", "Client", new { id = projects[0].Id })" id="btnSave" class="create-acc">NEXT</a>
+                    @*<input type="submit" id="btnSave" name="btnSave" class="create-acc" value="NEXT" />*@
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div style="background: #f8f8f8; border-radius: 4px;">
+    <div class="col-md-12">
+        <h1 class="register-head margin10">Contracts List</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th rowspan="2">Project Name</th>
+                    <th rowspan="2">Description</th>
+                    <th rowspan="2">Address</th>
+                    <th colspan="4">Representive Details</th>
+                    <th rowspan="2">Action</th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Project.Title</td>
+                            <td>@item.Description</td>
+                            <td>@item.AddressDetail.Street, @item.AddressDetail.City, @item.AddressDetail.Province, @item.AddressDetail.Country</td>
+                            <td>@item.RepresentiveName</td>
+                            <td>@item.RepresentiveContact</td>
+                            <td>@item.RepresentiveEmail</td>
+                            <td>@item.RepresentivePhone</td>
+                            <td>
+                                <a href="~/Contract/DeleteContract/@item.Id" title="delete"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a href="~/Contract/ContractUpdate/@item.Id" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

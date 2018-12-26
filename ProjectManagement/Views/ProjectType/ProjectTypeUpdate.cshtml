@@ -1,0 +1,32 @@
+﻿@model ProjectManagement.Models.ProjectType
+@{
+    ViewBag.Title = "ProjectTypeUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            PROJECT TYPE INFORMATION
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("UpdateProjectType", "ProjectType", FormMethod.Post, new { enctype = "multipart/form-data", id= "projectType", data_toggle = "validator" }))
+            {
+                <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Project Type<br>
+                        <input type="text" class="form-control" id="Type" required="required" name="Type" size="74" value="@Model.Type">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="UPDATE" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

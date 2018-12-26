@@ -1,0 +1,133 @@
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --input-padding-x: .75rem;
+    --input-padding-y: .75rem;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Montserrat', 'Lato', sans-serif;
+    line-height: 1.7;
+    background: #f6f7fb; 
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+textarea {
+    outline: none;
+    border: none;
+}
+
+input {
+    padding-left: 5px;
+    margin-left: -5px;
+}
+
+textarea:focus,
+input:focus {
+    border-color: transparent !important;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+input:focus:-moz-placeholder {
+    color: transparent;
+}
+
+input:focus::-moz-placeholder {
+    color: transparent;
+}
+
+input:focus:-ms-input-placeholder {
+    color: transparent;
+}
+
+textarea:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+textarea:focus:-moz-placeholder {
+    color: transparent;
+}
+
+textarea:focus::-moz-placeholder {
+    color: transparent;
+}
+
+textarea:focus:-ms-input-placeholder {
+    color: transparent;
+}
+
+.p-b-20 {
+    padding-bottom: 20px;
+}
+
+.p-b-48 {
+    padding-bottom: 48px;
+}
+
+.p-b-26 {
+    padding-bottom: 26px;
+}
+
+.p-t-10 {
+    padding-top: 10px;
+}
+
+.p-t-20 {
+    padding-top: 20px !important;
+}
+
+.p-l-20 {
+    padding-left: 20px;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+a {
+    font-size: 1.4rem;
+    line-height: 1.7;
+    color: #999;
+    margin: 0px;
+    transition: all 0.4s ease;
+}
+
+a:focus {
+    outline: none !important;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.primary-color {
+    color: #237FC6;
+}
+
+.canvasjs-chart-container {
+    height: 1px;
+}

@@ -1,0 +1,285 @@
+﻿@model List<ProjectManagement.Models.Employee>
+@{
+    ViewBag.Title = "AddEmployee";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var departments = ViewData["departments"] as List<ProjectManagement.Models.Department>;
+    string errMess = ViewData["errMess"] as string;
+}
+<link href="~/assets/css/change-password.css" rel="stylesheet" />
+
+
+<style>
+    .gender-tick .form-control-feedback {
+        margin-top: -24px;
+    }
+</style>
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            EMPLOYEE INFORMATION
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("SaveEmployee", "Employee", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                @*<div class="col-md-12">
+                        <h1 class="register-head margin10">Project Type</h1>
+                    </div>*@
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        First Name<br>
+                        <input type="text" class="form-control" id="FirstName" required="required" name="FirstName" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Middle Name<br>
+                        <input type="text" class="form-control" id="MiddleName" name="MiddleName" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Last Name<br>
+                        <input type="text" class="form-control" id="LastName" required="required" name="LastName" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Email*<br>
+                        <input type="email" class="form-control" id="Email" required="required" name="Email" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Contact*<br>
+                        <input type="text" class="form-control" id="Contact" required="required" name="Contact" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Join Date*<br>
+                        <input type="date" class="form-control" id="JoinDate" required="required" name="JoinDate" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Leave Date<br>
+                        <input type="date" class="form-control" id="LeaveDate" name="LeaveDate" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Date of birth*<br>
+                        <input type="date" class="form-control" id="DateOfBorth" required="required" name="DateOfBorth" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Department*<br>
+                        <select class="form-control" id="DepartmentId" name="DepartmentId">
+                            <option selected>Select Department</option>
+                            @foreach (var item in departments)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Username*<br>
+                        <input type="text" class="form-control" required="required" name="Username" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Password*<br>
+                        <input type="text" id="paw" class="form-control" required="required" name="Password" size="74"><a id="generatePassword" href="javascript:void(0)">Generate random password</a>
+                    </div>
+                    <div class="col-md-4 aro-pswd_info">
+                        <div id="pswd_info">
+                            <h4>Password must be requirements</h4>
+                            <ul>
+                                <li id="letter" class="invalid">At least <strong>one letter</strong></li>
+                                <li id="capital" class="invalid">At least <strong>one capital letter</strong></li>
+                                <li id="number" class="invalid">At least <strong>one number</strong></li>
+                                <li id="length" class="invalid">Be at least <strong>8 characters</strong></li>
+                                <li id="space" class="invalid">be<strong> use [~,!,@@,#,$,%,^,&,*,-,=,.,;,']</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="SAVE" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div style="background: #f8f8f8; border-radius: 4px;">
+    <div class="col-md-12">
+        <h1 class="register-head margin10">Employees List</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <td>Department</td>
+                    <th>Email/Username</th>
+                    <th>Contact</th>
+                    <th>Join Date</th>
+                    <th>Leave Date</th>
+                    <th>Date of Birth</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.FirstName</td>
+                            <td>@item.MiddleName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.Department.Name</td>
+                            <td>@item.Email / @item.Username</td>
+                            <td>@item.Contact</td>
+                            <td>@item.JoinDate</td>
+                            <td>@item.LeaveDate</td>
+                            <td>@item.DateOfBorth</td>
+                            <td>
+                                @*@Html.ActionLink("delete", "DeleteEmployee", "Employee", null, new { id = item.Id}, new {onclick = "return confirm('Are you sure you want to click this link?')" })*@
+                                <a href="~/Employee/DeleteEmployee/@item.Id" title="delete"><span class="glyphicon glyphicon-trash"></span></a>
+                                @*<a href="#" onclick="deleteRow(@item.Id)"><span class="glyphicon glyphicon-trash"></span></a>*@
+                                <a href="~/Employee/EmployeeUpdate/@item.Id" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Mail send Modal -->
+<div class="modal fade" id="mailSendModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+    <!-- Add .modal-dialog-centered to .modal-dialog to vertically center the modal -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Employee Added successfully</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <b>@errMess</b>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#generatePassword').click(function () {
+        var randomPassword = Array(20)
+            .fill('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@@-#$')
+            .map(x => x[Math.floor(crypto.getRandomValues(new Uint32Array(1))[0] / (0xffffffff + 1) * (x.length + 1))])
+            .join('');
+
+        $('#paw').val(randomPassword);
+    });
+
+    $(document).ready(function () {
+
+        var errMess = '@errMess';
+
+        if (errMess) {
+            $("#mailSendModal").modal('toggle');
+            $("#mailSendModal").modal('show');
+        }
+
+        var disableButton = true;
+
+        $('#paw').keyup(function () {
+            var pswd = $(this).val();
+
+            //validate the length
+            if (pswd.length < 8) {
+                $('#length').removeClass('valid').addClass('invalid');
+                disableButton = true;
+            } else {
+                $('#length').removeClass('invalid').addClass('valid');
+                disableButton = false;
+            }
+
+            //validate letter
+            if (pswd.match(/[A-z]/)) {
+                $('#letter').removeClass('invalid').addClass('valid');
+                disableButton = false;
+            } else {
+                $('#letter').removeClass('valid').addClass('invalid');
+                disableButton = true;
+            }
+
+            //validate capital letter
+            if (pswd.match(/[A-Z]/)) {
+                $('#capital').removeClass('invalid').addClass('valid');
+                disableButton = false;
+            } else {
+                $('#capital').removeClass('valid').addClass('invalid');
+                disableButton = true;
+            }
+
+            //validate number
+            if (pswd.match(/\d/)) {
+                $('#number').removeClass('invalid').addClass('valid');
+                disableButton = false;
+            } else {
+                $('#number').removeClass('valid').addClass('invalid');
+                disableButton = true;
+            }
+
+            //validate space
+            if (pswd.match(/[^a-zA-Z0-9\-\/]/)) {
+                $('#space').removeClass('invalid').addClass('valid');
+                disableButton = false;
+            } else {
+                $('#space').removeClass('valid').addClass('invalid');
+                disableButton = true;
+            }
+
+            if (disableButton) {
+                $("#btnSave").attr('disabled', 'disabled');
+            } else {
+                $('#btnSave').removeAttr('disabled');
+            }
+
+        }).focus(function () {
+            $('#pswd_info').show();
+        }).blur(function () {
+            $('#pswd_info').hide();
+        });
+    });
+</script>

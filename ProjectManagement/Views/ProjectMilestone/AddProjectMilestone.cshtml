@@ -1,0 +1,215 @@
+﻿@model List<ProjectManagement.Models.Employee>
+@{
+    ViewBag.Title = "AddProjectMilestone";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var projectName = ViewData["projects"] as ProjectManagement.Models.Project;
+    var dependencies = ViewData["dependencies"] as List<ProjectManagement.Models.ProjectMilestone>;
+    string color = "green";
+}
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            PROJECT MILESTONE
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("SaveProjectMilestone", "ProjectMilestone", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <input type="hidden" value="@projectName.Id" name="ProjectId" />
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        <b>Project Name:</b> @projectName.Title
+                    </div>
+                </div><hr />
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Task Details<br>
+                        <textarea class="form-control" name="TaskDetail"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Number of Day<br>
+                        <input type="text" class="form-control" required="required" name="NumberOfDay">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Impacted Functionalities<br>
+                        <textarea class="form-control" name="ImpactedFunctionalities"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Objective<br>
+                        <textarea class="form-control" name="Objective"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Task Deliverables<br>
+                        <textarea class="form-control" name="TaskDeliverables"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Task Owner<br>
+                        <select class="form-control" name="EmployeeId">
+                            @foreach (var item in Model)
+                            {
+                                <option value="@item.Id">@item.FirstName @item.LastName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Assumption<br>
+                        <textarea class="form-control" name="Assumption"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Dependencies<br>
+                        <select class="form-control" name="Dependencies">
+                            <option value="">N/A</option>
+                            @if (dependencies.Count > 0)
+                            {
+                                foreach (var item in dependencies)
+                                {
+                                    <option value="@item.Id">@item.TaskDetail</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Constraints<br>
+                        <textarea class="form-control" name="Constraints"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Estimated Start Date<br>
+                        <input type="date" class="form-control" required="required" name="EstimatedStartDate">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Estimated Completion Date<br>
+                        <input type="date" class="form-control" required="required" name="EstimatedCompletionDate">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Actual Start Date<br>
+                        <input type="date" class="form-control" name="ActualStartDate">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Actual Completion Date<br>
+                        <input type="date" class="form-control" name="ActualCompletionDate">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Percentage Completion<br>
+                        <input type="text" class="form-control" name="PercentageCompletion">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Status<br>
+                        <select class="form-control" name="Status">
+                            <option value="CompletedOnTime">Completed on time</option>
+                            <option value="DeadlineApproaching">Deadline Approaching</option>
+                            <option value="DeadlineExceeding">Deadline Exceeding</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="ADD PROJECT MILESTONE" />
+                        <a href="/RiskRegister/AddRiskRegister/@projectName.Id" class="create-acc">Next</a>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-12" style="overflow-x:auto;">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Task Details</th>
+                    <th>Number of Day</th>
+                    <th>Impacted Functionalities</th>
+                    <th>Objective</th>
+                    <th>Task Deliverables</th>
+                    <th>Task Owner</th>
+                    <th>Assumption</th>
+                    <th>Dependencies</th>
+                    <th>Constraints</th>
+                    <th>Estimated Start Date</th>
+                    <th>Estimated Completion Date</th>
+                    <th>Actual Start Date</th>
+                    <th>Actual Completion Date</th>
+                    <th>Percentage Completion</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+                @foreach (var item in dependencies)
+                {
+                    <tr style="@(item.Status == "CompletedOnTime" ? Html.Raw("background: green") : item.Status == "DeadlineApproaching" ? Html.Raw("background: red") : Html.Raw("background: yellow"));color: white;">
+                        <td>@item.TaskDetail</td>
+                        <td>@item.NumberOfDay</td>
+                        <td>@item.ImpactedFunctionalities</td>
+                        <td>@item.Objective</td>
+                        <td>@item.TaskDeliverables</td>
+                        <td>@item.Employee.FirstName @item.Employee.LastName</td>
+                        <td>@item.Assumption</td>
+                        @if (item.TaskDependencies.Count > 0)
+                        {
+                            <td>Task @item.TaskDependencies.Select(p => p.Id).Single()</td>
+                        }
+                        else
+                        {
+                            <td>N/A</td>
+                        }
+                        <td>@item.Constraints</td>
+                        <td>@item.EstimatedStartDate.Value.ToShortDateString()</td>
+                        <td>@item.EstimatedCompletionDate.Value.ToShortDateString()</td>
+                        <td>@item.ActualStartDate.Date</td>
+                        <td>@item.ActualCompletionDate.Date</td>
+                        <td>@item.PercentageCompletion</td>
+                        <td>@item.Status</td>
+                        <td>
+                            @*<a href="~/ProjectMilestone/DeleteProjectMilestone/@item.Id" title="delete"><span class="glyphicon glyphicon-trash"></span></a>*@
+                            @Html.ActionLink("delete", "DeleteProjectMilestone", "ProjectMilestone", new { id = item.Id }, new { onclick = "return confirm('Are you sure you wish to delete this?')" })
+                            <a href="~/ProjectMilestone/UpdateProjectMilestone/@item.Id" title="edit">edit</a>
+                            @*@Html.ActionLink("edit", "UpdateProjectMilestone", "ProjectMilestone", new { id = item.Id })*@
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+

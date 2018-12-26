@@ -1,0 +1,1763 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProjectManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AddressDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Street" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Province" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Website" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Contractor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
+          <Property Name="RepresentiveName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RepresentiveContact" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RepresentiveEmail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RepresentivePhone" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Contact" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="JoinDate" Type="datetime" Nullable="false" />
+          <Property Name="LeaveDate" Type="datetime" />
+          <Property Name="DateOfBorth" Type="datetime" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectTypeId" Type="int" Nullable="false" />
+          <Property Name="ApprovalDate" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProjectCategoryId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="varchar" MaxLength="100" />
+          <Property Name="Introduction" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="KeyDetails" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Scope" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProjectStatusId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompletedDate" Type="datetime" Nullable="false" />
+          <Property Name="KeyOutcomes" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MajorRoadblocks" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="KeyLearning" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ThingsCouldHaveBeenBetter" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RemrksFromTeamLead" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RemarksFromDepartmentLead" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RemarksFromManager" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProjectMilestone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskDetail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NumberOfDay" Type="int" Nullable="false" />
+          <Property Name="ImpactedFunctionalities" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Objective" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TaskDeliverables" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Assumption" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Constraints" Type="nvarchar(max)" />
+          <Property Name="EstimatedStartDate" Type="date" />
+          <Property Name="EstimatedCompletionDate" Type="date" />
+          <Property Name="ActualStartDate" Type="date" Nullable="false" />
+          <Property Name="ActualCompletionDate" Type="date" Nullable="false" />
+          <Property Name="PercentageCompletion" Type="float" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProjectStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectTeam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectTeamResponsibilites">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Responsibilities" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectTeamRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RiskArea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RiskAreas" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RiskRegisterId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RiskRegister">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrentStatus" Type="bit" Nullable="false" />
+          <Property Name="RiskImpact" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProbabilityOfOccurrence" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RiskDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProjectImpact" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Symptoms" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RiskResponseStrategy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResponseStrategy" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ContingencyPlan" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskDependency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="DependentTaskId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeamLead">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TechnologyPlatform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FrontendTechnology" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BackendTechnology" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ReasonOfUse" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Client_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contractor_Address">
+          <End Role="AddressDetail" Type="Self.AddressDetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contractor" Type="Self.Contractor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contractor">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contractor_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contractor" Type="Self.Contractor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contractor">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ProjectCategory">
+          <End Role="ProjectCategory" Type="Self.ProjectCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ProjectCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ProjectStatus">
+          <End Role="ProjectStatus" Type="Self.ProjectStatus" Multiplicity="1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ProjectStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ProjectType">
+          <End Role="ProjectType" Type="Self.ProjectType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ProjectTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDetails_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectDetails" Type="Self.ProjectDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectDetails">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectMilestone_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectMilestone" Type="Self.ProjectMilestone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectMilestone">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectMilestone_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectMilestone" Type="Self.ProjectMilestone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectMilestone">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeam_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectTeam" Type="Self.ProjectTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeam">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeam_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectTeam" Type="Self.ProjectTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeam">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeamResponsibilites_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectTeamResponsibilites" Type="Self.ProjectTeamResponsibilites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeamResponsibilites">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeamResponsibilites_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectTeamResponsibilites" Type="Self.ProjectTeamResponsibilites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeamResponsibilites">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeamRole_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectTeamRole" Type="Self.ProjectTeamRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeamRole">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeamRole_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectTeamRole" Type="Self.ProjectTeamRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeamRole">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RiskArea_RiskRegister">
+          <End Role="RiskRegister" Type="Self.RiskRegister" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RiskArea" Type="Self.RiskArea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiskRegister">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RiskArea">
+              <PropertyRef Name="RiskRegisterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RiskRegister_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RiskRegister" Type="Self.RiskRegister" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RiskRegister">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskDependency_ProjectMilestone">
+          <End Role="ProjectMilestone" Type="Self.ProjectMilestone" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TaskDependency" Type="Self.TaskDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectMilestone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskDependency">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskDependency_Task">
+          <End Role="ProjectMilestone" Type="Self.ProjectMilestone" Multiplicity="1" />
+          <End Role="TaskDependency" Type="Self.TaskDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectMilestone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskDependency">
+              <PropertyRef Name="DependentTaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamLead_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TeamLead" Type="Self.TeamLead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamLead">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamLead_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TeamLead" Type="Self.TeamLead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamLead">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TechnologyPlatform_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="TechnologyPlatform" Type="Self.TechnologyPlatform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TechnologyPlatform">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjectManagementModelStoreContainer">
+          <EntitySet Name="AddressDetail" EntityType="Self.AddressDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contractor" EntityType="Self.Contractor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectCategory" EntityType="Self.ProjectCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectDetails" EntityType="Self.ProjectDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectMilestone" EntityType="Self.ProjectMilestone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectStatus" EntityType="Self.ProjectStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectTeam" EntityType="Self.ProjectTeam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectTeamResponsibilites" EntityType="Self.ProjectTeamResponsibilites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectTeamRole" EntityType="Self.ProjectTeamRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectType" EntityType="Self.ProjectType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RiskArea" EntityType="Self.RiskArea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RiskRegister" EntityType="Self.RiskRegister" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskDependency" EntityType="Self.TaskDependency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamLead" EntityType="Self.TeamLead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TechnologyPlatform" EntityType="Self.TechnologyPlatform" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Client_Project" Association="Self.FK_Client_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contractor_Address" Association="Self.FK_Contractor_Address">
+            <End Role="AddressDetail" EntitySet="AddressDetail" />
+            <End Role="Contractor" EntitySet="Contractor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contractor_Project" Association="Self.FK_Contractor_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Contractor" EntitySet="Contractor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Department" Association="Self.FK_Employee_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectCategory" Association="Self.FK_Project_ProjectCategory">
+            <End Role="ProjectCategory" EntitySet="ProjectCategory" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectStatus" Association="Self.FK_Project_ProjectStatus">
+            <End Role="ProjectStatus" EntitySet="ProjectStatus" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectType" Association="Self.FK_Project_ProjectType">
+            <End Role="ProjectType" EntitySet="ProjectType" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDetails_Project" Association="Self.FK_ProjectDetails_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectDetails" EntitySet="ProjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectMilestone_Employee" Association="Self.FK_ProjectMilestone_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ProjectMilestone" EntitySet="ProjectMilestone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectMilestone_Project" Association="Self.FK_ProjectMilestone_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectMilestone" EntitySet="ProjectMilestone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeam_Employee" Association="Self.FK_ProjectTeam_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ProjectTeam" EntitySet="ProjectTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeam_Project" Association="Self.FK_ProjectTeam_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectTeam" EntitySet="ProjectTeam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeamResponsibilites_Employee" Association="Self.FK_ProjectTeamResponsibilites_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ProjectTeamResponsibilites" EntitySet="ProjectTeamResponsibilites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeamResponsibilites_Project" Association="Self.FK_ProjectTeamResponsibilites_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectTeamResponsibilites" EntitySet="ProjectTeamResponsibilites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeamRole_Employee" Association="Self.FK_ProjectTeamRole_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ProjectTeamRole" EntitySet="ProjectTeamRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeamRole_Project" Association="Self.FK_ProjectTeamRole_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectTeamRole" EntitySet="ProjectTeamRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RiskArea_RiskRegister" Association="Self.FK_RiskArea_RiskRegister">
+            <End Role="RiskRegister" EntitySet="RiskRegister" />
+            <End Role="RiskArea" EntitySet="RiskArea" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RiskRegister_Project" Association="Self.FK_RiskRegister_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="RiskRegister" EntitySet="RiskRegister" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskDependency_ProjectMilestone" Association="Self.FK_TaskDependency_ProjectMilestone">
+            <End Role="ProjectMilestone" EntitySet="ProjectMilestone" />
+            <End Role="TaskDependency" EntitySet="TaskDependency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskDependency_Task" Association="Self.FK_TaskDependency_Task">
+            <End Role="ProjectMilestone" EntitySet="ProjectMilestone" />
+            <End Role="TaskDependency" EntitySet="TaskDependency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamLead_Employee" Association="Self.FK_TeamLead_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TeamLead" EntitySet="TeamLead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamLead_Project" Association="Self.FK_TeamLead_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="TeamLead" EntitySet="TeamLead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TechnologyPlatform_Project" Association="Self.FK_TechnologyPlatform_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="TechnologyPlatform" EntitySet="TechnologyPlatform" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ProjectManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AddressDetails" EntityType="ProjectManagementModel.AddressDetail" />
+          <EntitySet Name="Clients" EntityType="ProjectManagementModel.Client" />
+          <EntitySet Name="Contractors" EntityType="ProjectManagementModel.Contractor" />
+          <EntitySet Name="Departments" EntityType="ProjectManagementModel.Department" />
+          <EntitySet Name="Employees" EntityType="ProjectManagementModel.Employee" />
+          <EntitySet Name="Projects" EntityType="ProjectManagementModel.Project" />
+          <EntitySet Name="ProjectCategories" EntityType="ProjectManagementModel.ProjectCategory" />
+          <EntitySet Name="ProjectDetails" EntityType="ProjectManagementModel.ProjectDetail" />
+          <EntitySet Name="ProjectMilestones" EntityType="ProjectManagementModel.ProjectMilestone" />
+          <EntitySet Name="ProjectStatus" EntityType="ProjectManagementModel.ProjectStatu" />
+          <EntitySet Name="ProjectTeams" EntityType="ProjectManagementModel.ProjectTeam" />
+          <EntitySet Name="ProjectTeamResponsibilites" EntityType="ProjectManagementModel.ProjectTeamResponsibilite" />
+          <EntitySet Name="ProjectTeamRoles" EntityType="ProjectManagementModel.ProjectTeamRole" />
+          <EntitySet Name="ProjectTypes" EntityType="ProjectManagementModel.ProjectType" />
+          <EntitySet Name="RiskAreas" EntityType="ProjectManagementModel.RiskArea" />
+          <EntitySet Name="RiskRegisters" EntityType="ProjectManagementModel.RiskRegister" />
+          <EntitySet Name="TaskDependencies" EntityType="ProjectManagementModel.TaskDependency" />
+          <EntitySet Name="TeamLeads" EntityType="ProjectManagementModel.TeamLead" />
+          <EntitySet Name="TechnologyPlatforms" EntityType="ProjectManagementModel.TechnologyPlatform" />
+          <AssociationSet Name="FK_Contractor_Address" Association="ProjectManagementModel.FK_Contractor_Address">
+            <End Role="AddressDetail" EntitySet="AddressDetails" />
+            <End Role="Contractor" EntitySet="Contractors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Project" Association="ProjectManagementModel.FK_Client_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contractor_Project" Association="ProjectManagementModel.FK_Contractor_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Contractor" EntitySet="Contractors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Department" Association="ProjectManagementModel.FK_Employee_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectMilestone_Employee" Association="ProjectManagementModel.FK_ProjectMilestone_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ProjectMilestone" EntitySet="ProjectMilestones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeam_Employee" Association="ProjectManagementModel.FK_ProjectTeam_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ProjectTeam" EntitySet="ProjectTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeamResponsibilites_Employee" Association="ProjectManagementModel.FK_ProjectTeamResponsibilites_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ProjectTeamResponsibilite" EntitySet="ProjectTeamResponsibilites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeamRole_Employee" Association="ProjectManagementModel.FK_ProjectTeamRole_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ProjectTeamRole" EntitySet="ProjectTeamRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamLead_Employee" Association="ProjectManagementModel.FK_TeamLead_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="TeamLead" EntitySet="TeamLeads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectCategory" Association="ProjectManagementModel.FK_Project_ProjectCategory">
+            <End Role="ProjectCategory" EntitySet="ProjectCategories" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectStatus" Association="ProjectManagementModel.FK_Project_ProjectStatus">
+            <End Role="ProjectStatu" EntitySet="ProjectStatus" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectType" Association="ProjectManagementModel.FK_Project_ProjectType">
+            <End Role="ProjectType" EntitySet="ProjectTypes" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDetails_Project" Association="ProjectManagementModel.FK_ProjectDetails_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectMilestone_Project" Association="ProjectManagementModel.FK_ProjectMilestone_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectMilestone" EntitySet="ProjectMilestones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeam_Project" Association="ProjectManagementModel.FK_ProjectTeam_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectTeam" EntitySet="ProjectTeams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeamResponsibilites_Project" Association="ProjectManagementModel.FK_ProjectTeamResponsibilites_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectTeamResponsibilite" EntitySet="ProjectTeamResponsibilites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectTeamRole_Project" Association="ProjectManagementModel.FK_ProjectTeamRole_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectTeamRole" EntitySet="ProjectTeamRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RiskRegister_Project" Association="ProjectManagementModel.FK_RiskRegister_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="RiskRegister" EntitySet="RiskRegisters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamLead_Project" Association="ProjectManagementModel.FK_TeamLead_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="TeamLead" EntitySet="TeamLeads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TechnologyPlatform_Project" Association="ProjectManagementModel.FK_TechnologyPlatform_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="TechnologyPlatform" EntitySet="TechnologyPlatforms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskDependency_ProjectMilestone" Association="ProjectManagementModel.FK_TaskDependency_ProjectMilestone">
+            <End Role="ProjectMilestone" EntitySet="ProjectMilestones" />
+            <End Role="TaskDependency" EntitySet="TaskDependencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskDependency_Task" Association="ProjectManagementModel.FK_TaskDependency_Task">
+            <End Role="ProjectMilestone" EntitySet="ProjectMilestones" />
+            <End Role="TaskDependency" EntitySet="TaskDependencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RiskArea_RiskRegister" Association="ProjectManagementModel.FK_RiskArea_RiskRegister">
+            <End Role="RiskRegister" EntitySet="RiskRegisters" />
+            <End Role="RiskArea" EntitySet="RiskAreas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AddressDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Province" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contractors" Relationship="ProjectManagementModel.FK_Contractor_Address" FromRole="AddressDetail" ToRole="Contractor" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Project" Relationship="ProjectManagementModel.FK_Client_Project" FromRole="Client" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Contractor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+          <Property Name="RepresentiveName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RepresentiveContact" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RepresentiveEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RepresentivePhone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AddressDetail" Relationship="ProjectManagementModel.FK_Contractor_Address" FromRole="Contractor" ToRole="AddressDetail" />
+          <NavigationProperty Name="Project" Relationship="ProjectManagementModel.FK_Contractor_Project" FromRole="Contractor" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employees" Relationship="ProjectManagementModel.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JoinDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LeaveDate" Type="DateTime" Precision="3" />
+          <Property Name="DateOfBorth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Department" Relationship="ProjectManagementModel.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
+          <NavigationProperty Name="ProjectMilestones" Relationship="ProjectManagementModel.FK_ProjectMilestone_Employee" FromRole="Employee" ToRole="ProjectMilestone" />
+          <NavigationProperty Name="ProjectTeams" Relationship="ProjectManagementModel.FK_ProjectTeam_Employee" FromRole="Employee" ToRole="ProjectTeam" />
+          <NavigationProperty Name="ProjectTeamResponsibilites" Relationship="ProjectManagementModel.FK_ProjectTeamResponsibilites_Employee" FromRole="Employee" ToRole="ProjectTeamResponsibilite" />
+          <NavigationProperty Name="ProjectTeamRoles" Relationship="ProjectManagementModel.FK_ProjectTeamRole_Employee" FromRole="Employee" ToRole="ProjectTeamRole" />
+          <NavigationProperty Name="TeamLeads" Relationship="ProjectManagementModel.FK_TeamLead_Employee" FromRole="Employee" ToRole="TeamLead" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ApprovalDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Introduction" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="KeyDetails" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Scope" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectStatusId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="ProjectManagementModel.FK_Client_Project" FromRole="Project" ToRole="Client" />
+          <NavigationProperty Name="Contractors" Relationship="ProjectManagementModel.FK_Contractor_Project" FromRole="Project" ToRole="Contractor" />
+          <NavigationProperty Name="ProjectCategory" Relationship="ProjectManagementModel.FK_Project_ProjectCategory" FromRole="Project" ToRole="ProjectCategory" />
+          <NavigationProperty Name="ProjectStatu" Relationship="ProjectManagementModel.FK_Project_ProjectStatus" FromRole="Project" ToRole="ProjectStatu" />
+          <NavigationProperty Name="ProjectType" Relationship="ProjectManagementModel.FK_Project_ProjectType" FromRole="Project" ToRole="ProjectType" />
+          <NavigationProperty Name="ProjectDetails" Relationship="ProjectManagementModel.FK_ProjectDetails_Project" FromRole="Project" ToRole="ProjectDetail" />
+          <NavigationProperty Name="ProjectMilestones" Relationship="ProjectManagementModel.FK_ProjectMilestone_Project" FromRole="Project" ToRole="ProjectMilestone" />
+          <NavigationProperty Name="ProjectTeams" Relationship="ProjectManagementModel.FK_ProjectTeam_Project" FromRole="Project" ToRole="ProjectTeam" />
+          <NavigationProperty Name="ProjectTeamResponsibilites" Relationship="ProjectManagementModel.FK_ProjectTeamResponsibilites_Project" FromRole="Project" ToRole="ProjectTeamResponsibilite" />
+          <NavigationProperty Name="ProjectTeamRoles" Relationship="ProjectManagementModel.FK_ProjectTeamRole_Project" FromRole="Project" ToRole="ProjectTeamRole" />
+          <NavigationProperty Name="RiskRegisters" Relationship="ProjectManagementModel.FK_RiskRegister_Project" FromRole="Project" ToRole="RiskRegister" />
+          <NavigationProperty Name="TeamLeads" Relationship="ProjectManagementModel.FK_TeamLead_Project" FromRole="Project" ToRole="TeamLead" />
+          <NavigationProperty Name="TechnologyPlatforms" Relationship="ProjectManagementModel.FK_TechnologyPlatform_Project" FromRole="Project" ToRole="TechnologyPlatform" />
+        </EntityType>
+        <EntityType Name="ProjectCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Projects" Relationship="ProjectManagementModel.FK_Project_ProjectCategory" FromRole="ProjectCategory" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="ProjectDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompletedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="KeyOutcomes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MajorRoadblocks" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KeyLearning" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ThingsCouldHaveBeenBetter" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemrksFromTeamLead" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksFromDepartmentLead" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemarksFromManager" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Project" Relationship="ProjectManagementModel.FK_ProjectDetails_Project" FromRole="ProjectDetail" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="ProjectMilestone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskDetail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfDay" Type="Int32" Nullable="false" />
+          <Property Name="ImpactedFunctionalities" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Objective" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TaskDeliverables" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Assumption" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Constraints" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EstimatedStartDate" Type="DateTime" Precision="0" />
+          <Property Name="EstimatedCompletionDate" Type="DateTime" Precision="0" />
+          <Property Name="ActualStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ActualCompletionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PercentageCompletion" Type="Double" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="ProjectManagementModel.FK_ProjectMilestone_Employee" FromRole="ProjectMilestone" ToRole="Employee" />
+          <NavigationProperty Name="Project" Relationship="ProjectManagementModel.FK_ProjectMilestone_Project" FromRole="ProjectMilestone" ToRole="Project" />
+          <NavigationProperty Name="TaskDependencies" Relationship="ProjectManagementModel.FK_TaskDependency_ProjectMilestone" FromRole="ProjectMilestone" ToRole="TaskDependency" />
+          <NavigationProperty Name="TaskDependencies1" Relationship="ProjectManagementModel.FK_TaskDependency_Task" FromRole="ProjectMilestone" ToRole="TaskDependency" />
+        </EntityType>
+        <EntityType Name="ProjectStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Projects" Relationship="ProjectManagementModel.FK_Project_ProjectStatus" FromRole="ProjectStatu" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="ProjectTeam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="ProjectManagementModel.FK_ProjectTeam_Employee" FromRole="ProjectTeam" ToRole="Employee" />
+          <NavigationProperty Name="Project" Relationship="ProjectManagementModel.FK_ProjectTeam_Project" FromRole="ProjectTeam" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="ProjectTeamResponsibilite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Responsibilities" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="ProjectManagementModel.FK_ProjectTeamResponsibilites_Employee" FromRole="ProjectTeamResponsibilite" ToRole="Employee" />
+          <NavigationProperty Name="Project" Relationship="ProjectManagementModel.FK_ProjectTeamResponsibilites_Project" FromRole="ProjectTeamResponsibilite" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="ProjectTeamRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="ProjectManagementModel.FK_ProjectTeamRole_Employee" FromRole="ProjectTeamRole" ToRole="Employee" />
+          <NavigationProperty Name="Project" Relationship="ProjectManagementModel.FK_ProjectTeamRole_Project" FromRole="ProjectTeamRole" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="ProjectType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Projects" Relationship="ProjectManagementModel.FK_Project_ProjectType" FromRole="ProjectType" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="RiskArea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RiskAreas" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RiskRegisterId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RiskRegister" Relationship="ProjectManagementModel.FK_RiskArea_RiskRegister" FromRole="RiskArea" ToRole="RiskRegister" />
+        </EntityType>
+        <EntityType Name="RiskRegister">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentStatus" Type="Boolean" Nullable="false" />
+          <Property Name="RiskImpact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProbabilityOfOccurrence" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RiskDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectImpact" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Symptoms" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RiskResponseStrategy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ResponseStrategy" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContingencyPlan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="ProjectManagementModel.FK_RiskRegister_Project" FromRole="RiskRegister" ToRole="Project" />
+          <NavigationProperty Name="RiskAreas" Relationship="ProjectManagementModel.FK_RiskArea_RiskRegister" FromRole="RiskRegister" ToRole="RiskArea" />
+        </EntityType>
+        <EntityType Name="TaskDependency">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="DependentTaskId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProjectMilestone" Relationship="ProjectManagementModel.FK_TaskDependency_ProjectMilestone" FromRole="TaskDependency" ToRole="ProjectMilestone" />
+          <NavigationProperty Name="ProjectMilestone1" Relationship="ProjectManagementModel.FK_TaskDependency_Task" FromRole="TaskDependency" ToRole="ProjectMilestone" />
+        </EntityType>
+        <EntityType Name="TeamLead">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="ProjectManagementModel.FK_TeamLead_Employee" FromRole="TeamLead" ToRole="Employee" />
+          <NavigationProperty Name="Project" Relationship="ProjectManagementModel.FK_TeamLead_Project" FromRole="TeamLead" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="TechnologyPlatform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FrontendTechnology" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BackendTechnology" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ReasonOfUse" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="ProjectManagementModel.FK_TechnologyPlatform_Project" FromRole="TechnologyPlatform" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK_Contractor_Address">
+          <End Type="ProjectManagementModel.AddressDetail" Role="AddressDetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.Contractor" Role="Contractor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressDetail">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contractor">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Project">
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.Client" Role="Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contractor_Project">
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.Contractor" Role="Contractor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contractor">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Department">
+          <End Type="ProjectManagementModel.Department" Role="Department" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectMilestone_Employee">
+          <End Type="ProjectManagementModel.Employee" Role="Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.ProjectMilestone" Role="ProjectMilestone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectMilestone">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeam_Employee">
+          <End Type="ProjectManagementModel.Employee" Role="Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.ProjectTeam" Role="ProjectTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeam">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeamResponsibilites_Employee">
+          <End Type="ProjectManagementModel.Employee" Role="Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.ProjectTeamResponsibilite" Role="ProjectTeamResponsibilite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeamResponsibilite">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeamRole_Employee">
+          <End Type="ProjectManagementModel.Employee" Role="Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.ProjectTeamRole" Role="ProjectTeamRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeamRole">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamLead_Employee">
+          <End Type="ProjectManagementModel.Employee" Role="Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.TeamLead" Role="TeamLead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamLead">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ProjectCategory">
+          <End Type="ProjectManagementModel.ProjectCategory" Role="ProjectCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ProjectCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ProjectStatus">
+          <End Type="ProjectManagementModel.ProjectStatu" Role="ProjectStatu" Multiplicity="1" />
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectStatu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ProjectStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ProjectType">
+          <End Type="ProjectManagementModel.ProjectType" Role="ProjectType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ProjectTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDetails_Project">
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="ProjectManagementModel.ProjectDetail" Role="ProjectDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectDetail">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectMilestone_Project">
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="ProjectManagementModel.ProjectMilestone" Role="ProjectMilestone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectMilestone">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeam_Project">
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.ProjectTeam" Role="ProjectTeam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeam">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeamResponsibilites_Project">
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.ProjectTeamResponsibilite" Role="ProjectTeamResponsibilite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeamResponsibilite">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectTeamRole_Project">
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.ProjectTeamRole" Role="ProjectTeamRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTeamRole">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RiskRegister_Project">
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.RiskRegister" Role="RiskRegister" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RiskRegister">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamLead_Project">
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.TeamLead" Role="TeamLead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamLead">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TechnologyPlatform_Project">
+          <End Type="ProjectManagementModel.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="ProjectManagementModel.TechnologyPlatform" Role="TechnologyPlatform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TechnologyPlatform">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskDependency_ProjectMilestone">
+          <End Type="ProjectManagementModel.ProjectMilestone" Role="ProjectMilestone" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.TaskDependency" Role="TaskDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectMilestone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskDependency">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskDependency_Task">
+          <End Type="ProjectManagementModel.ProjectMilestone" Role="ProjectMilestone" Multiplicity="1" />
+          <End Type="ProjectManagementModel.TaskDependency" Role="TaskDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectMilestone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskDependency">
+              <PropertyRef Name="DependentTaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RiskArea_RiskRegister">
+          <End Type="ProjectManagementModel.RiskRegister" Role="RiskRegister" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectManagementModel.RiskArea" Role="RiskArea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiskRegister">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RiskArea">
+              <PropertyRef Name="RiskRegisterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjectManagementModelStoreContainer" CdmEntityContainer="ProjectManagementEntities">
+          <EntitySetMapping Name="AddressDetails">
+            <EntityTypeMapping TypeName="ProjectManagementModel.AddressDetail">
+              <MappingFragment StoreEntitySet="AddressDetail">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="ProjectManagementModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contractors">
+            <EntityTypeMapping TypeName="ProjectManagementModel.Contractor">
+              <MappingFragment StoreEntitySet="Contractor">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="RepresentivePhone" ColumnName="RepresentivePhone" />
+                <ScalarProperty Name="RepresentiveEmail" ColumnName="RepresentiveEmail" />
+                <ScalarProperty Name="RepresentiveContact" ColumnName="RepresentiveContact" />
+                <ScalarProperty Name="RepresentiveName" ColumnName="RepresentiveName" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="ProjectManagementModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="ProjectManagementModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DateOfBorth" ColumnName="DateOfBorth" />
+                <ScalarProperty Name="LeaveDate" ColumnName="LeaveDate" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="ProjectManagementModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProjectStatusId" ColumnName="ProjectStatusId" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="KeyDetails" ColumnName="KeyDetails" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ProjectCategoryId" ColumnName="ProjectCategoryId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+                <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectCategories">
+            <EntityTypeMapping TypeName="ProjectManagementModel.ProjectCategory">
+              <MappingFragment StoreEntitySet="ProjectCategory">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectDetails">
+            <EntityTypeMapping TypeName="ProjectManagementModel.ProjectDetail">
+              <MappingFragment StoreEntitySet="ProjectDetails">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="RemarksFromManager" ColumnName="RemarksFromManager" />
+                <ScalarProperty Name="RemarksFromDepartmentLead" ColumnName="RemarksFromDepartmentLead" />
+                <ScalarProperty Name="RemrksFromTeamLead" ColumnName="RemrksFromTeamLead" />
+                <ScalarProperty Name="ThingsCouldHaveBeenBetter" ColumnName="ThingsCouldHaveBeenBetter" />
+                <ScalarProperty Name="KeyLearning" ColumnName="KeyLearning" />
+                <ScalarProperty Name="MajorRoadblocks" ColumnName="MajorRoadblocks" />
+                <ScalarProperty Name="KeyOutcomes" ColumnName="KeyOutcomes" />
+                <ScalarProperty Name="CompletedDate" ColumnName="CompletedDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectMilestones">
+            <EntityTypeMapping TypeName="ProjectManagementModel.ProjectMilestone">
+              <MappingFragment StoreEntitySet="ProjectMilestone">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PercentageCompletion" ColumnName="PercentageCompletion" />
+                <ScalarProperty Name="ActualCompletionDate" ColumnName="ActualCompletionDate" />
+                <ScalarProperty Name="ActualStartDate" ColumnName="ActualStartDate" />
+                <ScalarProperty Name="EstimatedCompletionDate" ColumnName="EstimatedCompletionDate" />
+                <ScalarProperty Name="EstimatedStartDate" ColumnName="EstimatedStartDate" />
+                <ScalarProperty Name="Constraints" ColumnName="Constraints" />
+                <ScalarProperty Name="Assumption" ColumnName="Assumption" />
+                <ScalarProperty Name="TaskDeliverables" ColumnName="TaskDeliverables" />
+                <ScalarProperty Name="Objective" ColumnName="Objective" />
+                <ScalarProperty Name="ImpactedFunctionalities" ColumnName="ImpactedFunctionalities" />
+                <ScalarProperty Name="NumberOfDay" ColumnName="NumberOfDay" />
+                <ScalarProperty Name="TaskDetail" ColumnName="TaskDetail" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectStatus">
+            <EntityTypeMapping TypeName="ProjectManagementModel.ProjectStatu">
+              <MappingFragment StoreEntitySet="ProjectStatus">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectTeams">
+            <EntityTypeMapping TypeName="ProjectManagementModel.ProjectTeam">
+              <MappingFragment StoreEntitySet="ProjectTeam">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectTeamResponsibilites">
+            <EntityTypeMapping TypeName="ProjectManagementModel.ProjectTeamResponsibilite">
+              <MappingFragment StoreEntitySet="ProjectTeamResponsibilites">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Responsibilities" ColumnName="Responsibilities" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectTeamRoles">
+            <EntityTypeMapping TypeName="ProjectManagementModel.ProjectTeamRole">
+              <MappingFragment StoreEntitySet="ProjectTeamRole">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectTypes">
+            <EntityTypeMapping TypeName="ProjectManagementModel.ProjectType">
+              <MappingFragment StoreEntitySet="ProjectType">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RiskAreas">
+            <EntityTypeMapping TypeName="ProjectManagementModel.RiskArea">
+              <MappingFragment StoreEntitySet="RiskArea">
+                <ScalarProperty Name="RiskRegisterId" ColumnName="RiskRegisterId" />
+                <ScalarProperty Name="RiskAreas" ColumnName="RiskAreas" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RiskRegisters">
+            <EntityTypeMapping TypeName="ProjectManagementModel.RiskRegister">
+              <MappingFragment StoreEntitySet="RiskRegister">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ContingencyPlan" ColumnName="ContingencyPlan" />
+                <ScalarProperty Name="ResponseStrategy" ColumnName="ResponseStrategy" />
+                <ScalarProperty Name="RiskResponseStrategy" ColumnName="RiskResponseStrategy" />
+                <ScalarProperty Name="Symptoms" ColumnName="Symptoms" />
+                <ScalarProperty Name="ProjectImpact" ColumnName="ProjectImpact" />
+                <ScalarProperty Name="RiskDescription" ColumnName="RiskDescription" />
+                <ScalarProperty Name="ProbabilityOfOccurrence" ColumnName="ProbabilityOfOccurrence" />
+                <ScalarProperty Name="RiskImpact" ColumnName="RiskImpact" />
+                <ScalarProperty Name="CurrentStatus" ColumnName="CurrentStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskDependencies">
+            <EntityTypeMapping TypeName="ProjectManagementModel.TaskDependency">
+              <MappingFragment StoreEntitySet="TaskDependency">
+                <ScalarProperty Name="DependentTaskId" ColumnName="DependentTaskId" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamLeads">
+            <EntityTypeMapping TypeName="ProjectManagementModel.TeamLead">
+              <MappingFragment StoreEntitySet="TeamLead">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TechnologyPlatforms">
+            <EntityTypeMapping TypeName="ProjectManagementModel.TechnologyPlatform">
+              <MappingFragment StoreEntitySet="TechnologyPlatform">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ReasonOfUse" ColumnName="ReasonOfUse" />
+                <ScalarProperty Name="BackendTechnology" ColumnName="BackendTechnology" />
+                <ScalarProperty Name="FrontendTechnology" ColumnName="FrontendTechnology" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

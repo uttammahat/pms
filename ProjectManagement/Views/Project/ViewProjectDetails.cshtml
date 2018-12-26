@@ -1,0 +1,188 @@
+﻿@model ProjectManagement.Models.Project
+@{
+    ViewBag.Title = "ViewProjectDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var projectStatus = ViewData["projectStatus"] as ProjectManagement.Models.ProjectStatu;
+    double deviation = Convert.ToDouble(ViewData["projectDeviation"]);
+}
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            PROJECT DETAILS
+        </div>
+
+        <div class="col-md-12" style="margin-top: 10px;">
+            <div class="col-md-5">
+                <h3>Project Status: <span><b>@Model.ProjectStatu.Status</b></span></h3>
+            </div>
+            <div class="col-md-6" style="text-align: right;">
+                @if (Model.ProjectStatu.Status != "Completed")
+                {
+                    if (Model.ProjectStatu.Status == "NotStarted")
+                    {
+                        <a href="~/Project/StartProject" class="btn btn-primary">Start A Project</a>
+                    }
+                    else
+                    {
+                        <a href="~/ProjectMilestone/AddProjectMilestone/@Model.Id" class="btn btn-primary">Project Milestone</a>
+                        <a href="~/RiskRegister/AddRiskRegister/@Model.Id" class="btn btn-primary">Risk Register</a>
+                        <a href="~/TeamResponsibilities/AddTeamResponsibilities/@Model.Id" class="btn btn-primary">View/Add Project Member</a>
+                        <a href="~/Project/CompleteProject" class="btn btn-primary">Complete Project</a><br />
+                        <h1>Project Deviation: @deviation %</h1><br />
+                    }
+                }
+                else
+                {
+                    <a href="~/ProjectDetails/AddProjectDetails/@Model.Id" class="btn btn-primary">Project Details</a>
+                }
+            </div>
+        </div>
+
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            <div class="col-md-12 form-fill">
+                <div class="col-md-8" style="border:1px solid black; border-radius: 10px; margin-bottom: 15px;position: relative;">
+                    <h3>Project Details</h3>
+                    <a href="~/Project/ProjectUpdate/@Model.Id"><span title="edit" style="position: absolute;top: 10px;right: 10px;cursor: pointer" class="glyphicon glyphicon-pencil"></span></a>
+                    <p>Introduction = @Model.Introduction</p>
+                    <p>Project Name = @Model.Title</p>
+                    <p>Project Type = @Model.ProjectType.Type</p>
+                    <p>Start Date = @Model.StartDate.ToString("dd MMM yyyy")</p>
+                    <p>End Date = @Model.EndDate</p>
+                    <p>Key Details = @Model.KeyDetails</p>
+                    <p>Scope = @Model.Scope</p>
+                </div>
+
+                @if (Model.Clients.Count > 0)
+                {
+                <div class="col-md-8" style="border:1px solid black; border-radius: 10px; margin-bottom: 15px;position: relative;">
+                    <h3>Clients Details</h3>
+
+                    @foreach (var item in Model.Clients)
+                    {
+                        <a style="float: right;margin-left: 5px; color: green;" href="@Url.Action("ClientUpdate", "Client", new { id = item.Id, projectId = item.ProjectId})">edit</a>
+                        @Html.ActionLink("delete", "DeleteClient", "Client", new { id = item.Id }, new { @style = "float:right;color: red;", onclick = "return confirm('Are you sure you wish to delete this?')" })
+                        <br />
+                        <p>Client = @item.CompanyName</p>
+                        <p>ContactNo = @item.ContactNo</p>
+                        <p>Email = @item.Email</p>
+                        <p>Address = @item.Address</p>
+                        <p>Website = @item.Website</p>
+
+                        <hr />
+                    }
+                </div>
+                }
+
+                @if (Model.Contractors.Count > 0)
+                {
+                    <div class="col-md-8" style="border:1px solid black; border-radius: 10px; margin-bottom: 15px;position: relative;">
+                        <h3>Contractor Details</h3>
+
+                        @foreach (var item in Model.Contractors)
+                        {
+                            <a style="float: right; margin-left: 5px; color: green;" href="@Url.Action("ContractUpdate", "Contract", new { id = item.Id, projectId = item.ProjectId})">edit</a>
+
+                                @Html.ActionLink("delete","DeleteContract","Contract",new { id = item.Id }, new { @style = "float:right;color: red;", onclick = "return confirm('Are you sure you wish to delete this?')" })
+                                <br />
+                                <p>Description = @item.Description</p>
+                                <p>Client = @item.RepresentiveName</p>
+                                <p>Representive Name = @item.RepresentiveContact</p>
+                                <p>Representive Email = @item.RepresentiveEmail</p>
+                                <p>Representive Phone = @item.RepresentivePhone</p>
+
+                                <div style="border:1px solid black; border-radius: 10px; margin-bottom: 15px;">
+                                    <p>Street = @item.AddressDetail.Street</p>
+                                    <p>City = @item.AddressDetail.City</p>
+                                    <p>Province = @item.AddressDetail.Province</p>
+                                    <p>Country = @item.AddressDetail.Country</p>
+                                </div>
+
+                            <hr />
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div id="London">
+            <div class="col-md-6" style="margin-left: -220px;">
+                @if (Model.RiskRegisters.Count > 0)
+                {
+                    foreach (var item in Model.RiskRegisters)
+                    {
+                        <a href="~/RiskRegister/EditRiskRegister/@item.Id" style="float: right;">edit</a>
+                        <p><b>Current Status</b> = @(item.CurrentStatus == true ? "Open" : "Closed")</p>
+
+                        if (item.RiskImpact == "High")
+                        {
+                            <p style="color: red;"><b>Risk Impact</b> = @item.RiskImpact</p>
+                        }
+                        else if (item.RiskImpact == "Medium")
+                        {
+                            <p style="color: green;"><b>Risk Impact</b> = @item.RiskImpact</p>
+                        }
+                        else if (item.RiskImpact == "Low")
+                        {
+                            <p style="color: yellow;"><b>Risk Impact</b> = @item.RiskImpact</p>
+                        }
+                        if (item.ProbabilityOfOccurrence == "High")
+                        {
+                            <p style="color: red;"><b>Probability Of Occurrence</b> = @item.ProbabilityOfOccurrence</p>
+                        }
+                        else if (item.ProbabilityOfOccurrence == "Medium")
+                        {
+                            <p style="color: yellow;"><b>Probability Of Occurrence</b> = @item.ProbabilityOfOccurrence</p>
+                        }
+                        else if (item.ProbabilityOfOccurrence == "Low")
+                        {
+                            <p style="color: green;"><b>Probability Of Occurrence</b> = @item.ProbabilityOfOccurrence</p>
+                        }
+                        <p><b>Risk Description</b> = @item.RiskDescription</p>
+                        <p><b>Project Impact</b> = @item.ProjectImpact</p>
+                        <p><b>Symptoms</b> = @item.Symptoms</p>
+                        <p><b>Risk Response Strategy</b> = @item.RiskResponseStrategy</p>
+                        <p><b>Response Strategy</b> = @item.ResponseStrategy</p>
+                        <p><b>Contingency Plan</b> = @item.ContingencyPlan</p>
+                        <hr />
+
+                        <div>
+                            <a href="~/RiskRegister/EditRiskArea/@item.Id" style="float: right;">edit</a>
+                            <b>Risk Areas</b>
+                            @foreach (var data in item.RiskAreas)
+                            {
+                                <ul>
+                                    <li>@data.RiskAreas</li>
+                                </ul>
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <b style="color: red; font-size: 20px;">Are you sure want to delete this?</b><br />
+                You wont able to revert this.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+                <button type="button" class="btn btn-primary">YES</button>
+            </div>
+        </div>
+    </div>
+</div>

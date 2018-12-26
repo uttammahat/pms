@@ -1,0 +1,110 @@
+﻿@model ProjectManagement.Models.Project
+@{
+    ViewBag.Title = "ProjectUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var projectCategory = ViewData["projectCategory"] as List<ProjectManagement.Models.ProjectCategory>;
+    var projectType = ViewData["projectType"] as List<ProjectManagement.Models.ProjectType>;
+}
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            PROJECT INFORMATION
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("UpdateProject", "Project", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <input type="hidden" value="@Model.Id" id="Id" name="Id" />
+                <input type="hidden" value="@Model.ProjectStatu.Id" name="ProjectStatu.Id"
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Project Type<br>
+                        <select class="form-control" id="ProjectTypeId" name="ProjectTypeId">
+                            <option selected>Select Project Type</option>
+                            @foreach (var item in projectType)
+                            {
+                                <option selected="@item.Id" value="@item.Id">@item.Type</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Approval Date<br>
+                        @*<input type="date" class="form-control" id="ApprovalDate" required="required" name="ApprovalDate" size="74" value="@Model.ApprovalDate">*@
+                        @Html.TextBoxFor(x => x.ApprovalDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Title<br>
+                        <input type="text" class="form-control" id="Title" required="required" name="Title" size="74" value="@Model.Title">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Project Category<br>
+                        <select class="form-control" id="ProjectCategoryId" name="ProjectCategoryId">
+                            <option selected>Select Project Category</option>
+                            @foreach (var item in projectCategory)
+                            {
+                                <option selected="@item.Id" value="@item.Id">@item.Category</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Start Date<br>
+                        @*<input type="date" class="form-control" id="StartDate" required="required" name="StartDate" size="74" value="@Model.StartDate">*@
+                        @Html.TextBoxFor(x => x.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        End Date<br>
+                        @*<input type="date" class="form-control" id="EndDate" required="required" name="EndDate" size="74" value="@Model.EndDate">*@
+                        @Html.TextBoxFor(x => x.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Introduction<br>
+                                    <textarea class="form-control" id="Introduction" name="Introduction" required="required">@Model.Introduction</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Key Details<br>
+                        <input type="text" class="form-control" id="KeyDetails" required="required" name="KeyDetails" size="74" value="@Model.KeyDetails">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Scope<br>
+                        <input type="text" class="form-control" id="Scope" required="required" name="Scope" size="74" value="@Model.Scope">
+                    </div>
+                </div>
+
+            
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="UPDATE" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

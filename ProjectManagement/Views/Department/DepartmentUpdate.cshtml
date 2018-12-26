@@ -1,0 +1,32 @@
+﻿@model ProjectManagement.Models.Department
+@{
+    ViewBag.Title = "DepartmentUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid" style="width:100%;">
+<div style="background: #f8f8f8; border-radius: 4px;">
+    <div class="col-md-12 headd">
+        DEPARTMENT INFORMATION
+    </div>
+    <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+        @using (Html.BeginForm("UpdateDepartment", "Department", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+        {
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <div class="col-md-12 form-fill">
+                <div class="col-md-8">
+                    Department Name<br>
+                    <input type="text" class="form-control" id="Name" required="required" name="Name" size="74" value="@Model.Name">
+                </div>
+            </div>
+
+            <div class="col-md-12 form-fill">
+                <div class="col-md-4 button-form">
+                    <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="UPDATE" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+</div>
+

@@ -1,0 +1,49 @@
+﻿@model List<ProjectManagement.Models.Employee>
+@{
+    ViewBag.Title = "AddTeamLead";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var projects = ViewData["projectData"] as ProjectManagement.Models.Project;
+}
+
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            TEAM LEAD INFORMATION
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("SaveTeamLead", "TeamLead", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Project Name<br>
+                        <select class="form-control" id="ProjectId" name="ProjectId">
+                            <option value="@projects.Id">@projects.Title</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Team Lead<br>
+                        <select class="form-control" id="EmployeeId" name="EmployeeId">
+                            <option selected>Select Employee</option>
+                            @foreach (var item in Model)
+                            {
+                                <option value="@item.Id">@item.FirstName @item.LastName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="SAVE" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

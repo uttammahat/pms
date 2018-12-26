@@ -1,0 +1,156 @@
+﻿@model ProjectManagement.Models.ProjectMilestone
+@{
+    ViewBag.Title = "UpdateProjectMilestone";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var employess = ViewData["employees"] as List<ProjectManagement.Models.Employee>;
+}
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            PROJECT MILESTONE
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("EditProjectMilestone", "ProjectMilestone", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <input type="hidden" value="@Model.ProjectId" name="ProjectId" />
+                <input type="hidden" value="@Model.Id" name="Id" />
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        <b>Project Name:</b> @Model.Project.Title
+                    </div>
+                </div><hr />
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Task Details<br>
+                        <textarea class="form-control" name="TaskDetail">@Model.TaskDetail</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Number of Day<br>
+                        <input type="text" class="form-control" required="required" name="NumberOfDay" value="@Model.NumberOfDay">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Impacted Functionalities<br>
+                        <textarea class="form-control" name="ImpactedFunctionalities">@Model.ImpactedFunctionalities</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Objective<br>
+                        <textarea class="form-control" name="Objective">@Model.Objective</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Task Deliverables<br>
+                        <textarea class="form-control" name="TaskDeliverables">@Model.TaskDeliverables</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Task Owner<br>
+                        <select class="form-control" name="EmployeeId">
+                            @foreach (var item in employess)
+                            {
+                                <option value="@item.Id" selected="@(@item.FirstName == Model.Employee.FirstName ? "selected" : "")">@item.FirstName @item.LastName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Assumption<br>
+                        <textarea class="form-control" name="Assumption">@Model.Assumption</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Dependencies<br>
+                        <select class="form-control" name="Dependencies">
+                            <option value="">N/A</option>
+                            @*@if (Model.Dedependencies.Count > 0)
+                                {
+                                    foreach (var item in dependencies)
+                                    {
+                                        <option value="@item.Id">@item.TaskDetail</option>
+                                    }
+                                }*@
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Constraints<br>
+                        <textarea class="form-control" name="Constraints">@Model.Constraints</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Estimated Start Date<br>
+                        @Html.TextBoxFor(model => model.EstimatedStartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Estimated Completion Date<br>
+                        @Html.TextBoxFor(model => model.EstimatedCompletionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Actual Start Date<br>
+                        @Html.TextBoxFor(model => model.ActualStartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Actual Completion Date<br>
+                        @Html.TextBoxFor(model => model.ActualCompletionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Percentage Completion<br>
+                        <input type="text" class="form-control" name="PercentageCompletion" value="@Model.PercentageCompletion">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Status<br>
+                        <select class="form-control" name="Status">
+                            <option value="CompletedOnTime">Completed on time</option>
+                            <option value="DeadlineApproaching">Deadline Approaching</option>
+                            <option value="DeadlineExceeding">Deadline Exceeding</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="UPDATE PROJECT MILESTONE" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

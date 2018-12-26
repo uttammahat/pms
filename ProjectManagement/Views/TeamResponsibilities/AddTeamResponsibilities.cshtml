@@ -1,0 +1,164 @@
+﻿@model List<ProjectManagement.Models.Employee>
+@{
+    ViewBag.Title = "TeamResponsibilities";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var projectId = ViewData["projectId"];
+    var projectTeam = ViewData["projectTeam"] as List<ProjectManagement.Models.ProjectTeam>;
+    var proposedTechnology = ViewData["proposedTechnology"] as ProjectManagement.Models.TechnologyPlatform;
+}
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            ROLES AND RESPONSIBILITIES
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @*<button id="add" type="button" class="create-acc" style="float:left; margin-left: 10px; margin-right: 10px;">Add</button>*@
+            <div id="getElement">
+                <div id="addElement" class="col-md-8 form-fill" style="border: 1px solid black;padding: 20px;">
+                    @using (Html.BeginForm("AddProjectTeam", "ProjectTeam", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+                    {
+                        <input type="hidden" value="@Convert.ToInt32(projectId)" name="ProjectId" />
+                        <div class="form-group">
+                            <div class="row">
+                                <select class="form-control" style="height:28px;width:50%;float:left;margin-bottom:15px;clear: both" name="EmployeeId">
+                                    @foreach (var item in Model)
+                                    {
+                                        <option value="@item.Id">@item.FirstName @item.MiddleName @item.LastName</option>
+                                    }
+                                </select>
+                            </div><hr />
+
+                            <div class="row" id="role">
+                                <strong>Add roles</strong>
+                                <div id="addRole">
+                                    <input type="text" class="form-control" name="Role0" /><button id="btnAddRole" type="button" class="btn btn-primary">Add</button>
+                                </div>
+                            </div><hr />
+
+                            <div class="row" id="res">
+                                <strong>Add responsibilities</strong>
+                                <div id="addResponsibilites">
+                                    <input type="text" class="form-control" name="Responsibilities0" /><button id="btnAddResponsibilities" type="button" class="btn btn-primary">Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit">ADD</button>
+                    }
+                </div>
+
+                @*technology platform section*@
+                <div class="col-md-4">
+                    @if (proposedTechnology == null)
+                    {
+                        using (Html.BeginForm("AddTechnologyPlatform", "TeamResponsibilities", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+                        {
+                            <input type="hidden" value="@Convert.ToInt32(projectId)" name="ProjectId" />
+                            <div class="col-md-12 form-fill">
+                                <div class="col-md-8">
+                                    Frontend<br>
+                                    <select class="form-control" name="FrontendTechnology">
+                                        <option value="HTML/CSS">HTML/CSS</option>
+                                        <option value="JavaScript/jQuery">JavaScript/jQuery</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 form-fill">
+                                <div class="col-md-8">
+                                    Backend<br>
+                                    <select class="form-control" name="BackendTechnology">
+                                        <option value="C#">C#</option>
+                                        <option value="Java">Java</option>
+                                        <option value="PHP">PHP</option>
+                                        <option value="Python">Python</option>
+                                        <option value="Ruby">Ruby</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 form-fill">
+                                <div class="col-md-8">
+                                    Reason of use<br>
+                                    <textarea name="ReasonOfUse"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 form-fill">
+                                <div class="col-md-4 button-form">
+                                    <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="ADD" />
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <a href="/TeamResponsibilities/UpdateTechnologyPlatform/@proposedTechnology.Id">edit</a>
+                        <b>Frontend:</b> @proposedTechnology.FrontendTechnology<br />
+                        <b>Backend:</b> @proposedTechnology.BackendTechnology<br />
+                        <b>Reason of use:</b> @proposedTechnology.ReasonOfUse<br />
+                    }
+                </div>
+                @*technology platform section end*@
+            </div>
+        </div>
+    </div>
+</div>
+
+@foreach (var item in projectTeam)
+{
+    <div class="col-md-12 form-fill">
+        <div class="col-md-8" style="border:1px solid black; border-radius: 10px; margin-bottom: 15px;position: relative;">
+            <a href="~/TeamResponsibilities/DeleteEmployee?empId=@item.EmployeeId&projectId=@item.ProjectId" class="btn btn-primary">Delete</a>
+            <a href="~/TeamResponsibilities/UpdateTeamResponsibilities?empId=@item.EmployeeId&projectId=@item.ProjectId" class="btn btn-primary">Edit</a>
+            @*@Html.ActionLink("Delete", "DeleteEmployee", "TeamResponsibilities", new { empId = item.EmployeeId, projectId = @item.ProjectId })*@
+
+
+
+            <p>Employee Name: @item.Employee.FirstName @item.Employee.MiddleName @item.Employee.LastName</p>
+            <hr />
+            <strong>Roles</strong>
+            <ul>
+                @foreach (var data in item.Employee.ProjectTeamRoles.Where(p => p.ProjectId == item.ProjectId))
+                {
+                    <li>@data.Role</li>
+                }
+            </ul>
+            <hr />
+            <strong>Responsibilites</strong>
+            <ul>
+                @foreach (var data in item.Employee.ProjectTeamResponsibilites.Where(p => p.ProjectId == item.ProjectId))
+                {
+                    <li>@data.Responsibilities</li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+
+
+<script>
+    $(document).ready(function () {
+        //$('#add').click(function () {
+        //    var element = $("#getElement").html();
+        //    console.log(element);
+        //    $("#London").append(element);
+        //});
+
+        $('#btnAddRole').click(function () {
+            var count = $("#addRole > div").length;
+            $('#addRole').append("<div id='" + count + "'><input type='text' id='value' name='Role" + (count + 1) + "' class='form-control'/><button onclick=remove(" + count + ") type='buton'>Remove</button><div>");
+        });
+
+        $('#btnAddResponsibilities').click(function () {
+            var count = $("#addResponsibilites > div").length;
+            $('#addResponsibilites').append("<div id='" + count + "'><input type='text' id='value' name='Responsibilities" + (count + 1) + "' class='form-control'/><button onclick=remove(" + count + ") type='buton'>Remove</button><div>");
+        });
+    });
+
+    function remove(id) {
+        $("#" + id).remove();
+    }
+</script>

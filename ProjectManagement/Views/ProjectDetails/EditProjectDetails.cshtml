@@ -1,0 +1,83 @@
+﻿@model ProjectManagement.Models.ProjectDetail
+@{
+    ViewBag.Title = "EditProjectDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            PROJECT INFORMATION
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("UpdateProjectDetails", "ProjectDetails", new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <input type="hidden" value="@Model.ProjectId" name="ProjectId" />
+                <input type="hidden" value="@Model.Id" name="Id" />
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Actual Completion Date<br>
+                        @*<input type="date" class="form-control" required="required" name="CompletedDate" value="@Model.CompletedDate">*@
+                        @Html.TextBoxFor(model => model.CompletedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Key Outcomes<br>
+                        <textarea class="form-control" name="KeyOutcomes" required="required">@Model.KeyOutcomes</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Major Road Blocks<br>
+                        <textarea class="form-control" name="MajorRoadblocks" required="required">@Model.MajorRoadblocks</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Key Learning<br>
+                        <textarea class="form-control" name="KeyLearning" required="required">@Model.KeyLearning</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Things Could Have Been Better<br>
+                        <textarea class="form-control" name="ThingsCouldHaveBeenBetter" required="required">@Model.ThingsCouldHaveBeenBetter</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Remarks From Team Lead<br>
+                        <textarea class="form-control" name="RemrksFromTeamLead" required="required">@Model.RemarksFromDepartmentLead</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Remarks From Department Lead<br>
+                        <textarea class="form-control" name="RemarksFromDepartmentLead" required="required">@Model.RemarksFromDepartmentLead</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Remarks From Manager<br>
+                        <textarea class="form-control" name="RemarksFromManager" required="required">@Model.RemarksFromManager</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="UPDATE" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

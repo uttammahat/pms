@@ -1,0 +1,69 @@
+﻿@model List<ProjectManagement.Models.ProjectType>
+@{
+    ViewBag.Title = "ProjectType";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<style>
+    .gender-tick .form-control-feedback {
+        margin-top: -24px;
+    }
+</style>
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            PROJECT TYPE INFORMATION
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("SaveProjectType", "ProjectType", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Project Type<br>
+                        <input type="text" class="form-control" id="Type" required="required" name="Type" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="ADD PROJECT TYPE" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<div style="background: #f8f8f8; border-radius: 4px;">
+    <div class="col-md-12">
+        <h1 class="register-head margin10">Project Types List</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Project Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Type</td>
+                            <td>
+                                <a href="~/ProjectType/DeleteProjectType/@item.Id" title="delete"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a href="~/ProjectType/ProjectTypeUpdate/@item.Id" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+

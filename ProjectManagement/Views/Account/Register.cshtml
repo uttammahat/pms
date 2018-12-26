@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "";
+}
+
+
+<html>
+<head>
+    <title>Login Page</title>
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                @using (Html.BeginForm("RegisterAccount", "Account", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+                {
+                    <h2>Please Sign Up <small>It's free and always will be.</small></h2>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="FirstName" required="required" name="FirstName" placeholder="First name">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="LastName" id="LastName" required="required" placeholder="Last Name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="Username" id="Username" class="form-control" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="Email" id="Email" class="form-control" placeholder="Email Address">
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="password" name="Password" id="Password" class="form-control" placeholder="Password">
+                            </div>
+                        </div>
+                        @*<div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                                </div>
+                            </div>*@
+                    </div>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6"><button type="submit" class="btn btn-info btn-block btn-lg">Register</button></div>
+                        <div class="col-xs-12 col-md-6">@Html.ActionLink("Back to login", "Login", "Account", null, new { @class = "btn btn-success btn-block btn-lg" });</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

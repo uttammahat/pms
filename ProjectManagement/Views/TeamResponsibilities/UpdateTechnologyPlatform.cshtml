@@ -1,0 +1,62 @@
+﻿@model ProjectManagement.Models.TechnologyPlatform
+@{
+    ViewBag.Title = "UpdateTechnologyPlatform";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            ROLES AND RESPONSIBILITIES
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+
+
+
+
+            @using (Html.BeginForm("EditTechnologyPlatform", "TeamResponsibilities", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <input type="hidden" value="@Model.Id" name="Id" />
+                <input type="hidden" value="@Model.ProjectId" name="ProjectId" />
+                <div class="form-group">
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-8">
+                            Frontend<br>
+                            <select class="form-control" name="FrontendTechnology">
+                                <option value="HTML/CSS">HTML/CSS</option>
+                                <option value="JavaScript/jQuery">JavaScript/jQuery</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-8">
+                            Backend<br>
+                            <select class="form-control" name="BackendTechnology">
+                                <option value="C#">C#</option>
+                                <option value="Java">Java</option>
+                                <option value="PHP">PHP</option>
+                                <option value="Python">Python</option>
+                                <option value="Ruby">Ruby</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-8">
+                            Reason of use<br>
+                            <textarea name="ReasonOfUse"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-4 button-form">
+                            <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="ADD" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

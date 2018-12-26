@@ -1,0 +1,60 @@
+﻿@model List<ProjectManagement.Models.Department>
+@{
+    ViewBag.Title = "AddDepartment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            DEPARTMENT INFORMATION
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("SaveDepartment", "Department", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Department Name<br>
+                        <input type="text" class="form-control" id="Name" required="required" name="Name" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="SAVE" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div style="background: #f8f8f8; border-radius: 4px;">
+    <div class="col-md-12">
+        <h1 class="register-head margin10">Departments List</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>
+                                <a href="~/Department/DeleteDepartment/@item.Id" title="delete"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a href="~/Department/DepartmentUpdate/@item.Id" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

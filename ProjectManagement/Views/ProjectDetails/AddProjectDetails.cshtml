@@ -1,0 +1,104 @@
+﻿@model ProjectManagement.Models.ProjectDetail
+@{
+    ViewBag.Title = "AddProjectDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    int projectId = (int)ViewData["ProjectId"];
+}
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            PROJECT INFORMATION
+        </div>
+
+        @if (Model == null)
+        {
+            <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+                @using (Html.BeginForm("SaveProjectDetails", "ProjectDetails", new { enctype = "multipart/form-data", data_toggle = "validator" }))
+                {
+                    <input type="hidden" value="@projectId" name="ProjectId" />
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-8">
+                            Actual Completion Date<br>
+                            <input type="date" class="form-control" required="required" name="CompletedDate" size="74">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-8">
+                            Key Outcomes<br>
+                            <textarea class="form-control" name="KeyOutcomes" required="required"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-8">
+                            Major Road Blocks<br>
+                            <textarea class="form-control" name="MajorRoadblocks" required="required"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-8">
+                            Key Learning<br>
+                            <textarea class="form-control" name="KeyLearning" required="required"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-8">
+                            Things Could Have Been Better<br>
+                            <textarea class="form-control" name="ThingsCouldHaveBeenBetter" required="required"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-8">
+                            Remrks From Team Lead<br>
+                            <textarea class="form-control" name="RemrksFromTeamLead" required="required"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-8">
+                            Remarks From Department Lead<br>
+                            <textarea class="form-control" name="RemarksFromDepartmentLead" required="required"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-8">
+                            Remarks From Manager<br>
+                            <textarea class="form-control" name="RemarksFromManager" required="required"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-fill">
+                        <div class="col-md-4 button-form">
+                            <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="ADD PROJECT DETAILS" />
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="container" style="border: 1px solid black;">
+                <a href="/ProjectDetails/EditProjectDetails/@Model.Id">edit</a>
+                @*<a href="/ProjectDetails/EditProjectDetails/@Model.Id">edit</a>*@
+                @Html.ActionLink("delete", "DeleteProjectDetails", "ProjectDetails", new { id = Model.Id }, new { onclick="return confirm ('Are you sure want to delete this?')"})
+                <hr />
+                <strong>Completed Date = </strong>@Model.CompletedDate<br />
+                <strong>Key Outcomes = </strong>@Model.KeyOutcomes<br />
+                <strong>Major Roadblocks = </strong>@Model.MajorRoadblocks<br />
+                <strong>Key Learning = </strong>@Model.KeyLearning<br />
+                <strong>Things Could Have Been Better = </strong>@Model.ThingsCouldHaveBeenBetter<br />
+                <strong>Remrks From Team Lead = </strong>@Model.RemrksFromTeamLead<br />
+                <strong>Remarks From Department Lead = </strong>@Model.RemarksFromDepartmentLead<br />
+                <strong>Remarks From Manager = </strong>@Model.RemarksFromManager<br />
+                <strong>Project = </strong>@Model.Project.Title<br />
+            </div>
+        }
+    </div>
+</div>
+

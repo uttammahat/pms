@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "";
+
+    var message = ViewData["InvalidLogin"] as string;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Login Page</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Krennova pvt.ltd">
+    <meta name="description" content="This project is about PMS(Project Management System)">
+    <meta name="robots" content="all">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <link href="~/assets/css/login.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="login-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-div">
+                        <div class="heading">
+                            <h2>Admin Login</h2>
+                            @*<p>Please enter your username and password</p>*@
+                        </div>
+                        @using (Html.BeginForm("LoginUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+                        {
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="username" name="Username" placeholder="Username" autocomplete="off" required>
+                                <label for="username" class="floating">Username</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="inputPassword" name="Password" placeholder="Password" required>
+                                <label for="password" class="floating">Password</label>
+                            </div>
+
+                            if (!string.IsNullOrEmpty(message))
+                            {
+                                <div class="error-msg">
+                                    <span>Invalid credential</span>
+                                </div>
+                            }
+
+                            <div class="forgot">
+                                <a href="~/Account/ForgotPassword">Forgot password?</a>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Login</button>
+
+                            @*<div class="forgot" style="float: right; padding-top: 10px">
+                                @Html.ActionLink("Dont have an account yet?", "Register", "Account");
+                            </div>*@
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+

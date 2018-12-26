@@ -1,0 +1,179 @@
+﻿@model List<ProjectManagement.Models.RiskRegister>
+@{
+    ViewBag.Title = "AddRiskRegister";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    string projectName = ViewData["projectName"] == null ? "" : ViewData["projectName"] as string;
+    int projectId = ViewData["projectId"] == null ? 0 : (int)ViewData["projectId"];
+    string message = ViewData["message"] == null ? null : ViewData["message"] as string;
+}
+
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            RISK REGISTER
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("SaveRiskRegister", "RiskRegister", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <strong>Project Name: @projectName</strong>
+                <div class="col-md-12 form-fill">
+                    <input type="hidden" name="ProjectId" value="@projectId" />
+                    <div class="col-md-8">
+                        Current Status<br>
+                        <select class="form-control" id="CurrentStatus" name="CurrentStatus">
+                            <option value="Open" selected>Open</option>
+                            <option value="Close">Close</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Risk Impact<br>
+                        <select class="form-control" id="RiskImpact" name="RiskImpact">
+                            <option value="High" selected>High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Probability of Occurrence<br>
+                        <select class="form-control" id="ProbabilityOfOccurrence" name="ProbabilityOfOccurrence">
+                            <option value="High" selected>High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Risk Description<br>
+                        <textarea class="form-control" id="RiskDescription" name="RiskDescription"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Project Impact<br>
+                        <input type="text" class="form-control" id="ProjectImpact" required="required" name="ProjectImpact" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Risk Area<br>
+                        <div id="riskArea">
+                            <input type="text" class="form-control" name="RiskArea0" /><button id="addRiskArea" type="button" class="btn btn-primary">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Symptoms/ Triggers of Risk<br>
+                        <textarea class="form-control" id="Symptoms" name="Symptoms"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Risk Response Strategy<br>
+                        <select class="form-control" id="RiskResponseStrategy" name="RiskResponseStrategy">
+                            <option value="Acceptance" selected>Acceptance</option>
+                            <option value="Avoidance">Avoidance</option>
+                            <option value="Contingency">Contingency</option>
+                            <option value="Mitigation">Mitigation</option>
+                            <option value="Transfer">Transfer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Response Strategy<br>
+                        <input type="text" class="form-control" id="ResponseStrategy" required="required" name="ResponseStrategy" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Contingency Plan<br>
+                        <input type="text" class="form-control" id="ContingencyPlan" required="required" name="ContingencyPlan" size="74">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="SAVE" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div style="background: #f8f8f8; border-radius: 4px;">
+    <div class="col-md-12">
+        <h1 class="register-head margin10">RISK REGISTER LIST</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Current Status</th>
+                    <th>Risk Impact</th>
+                    <th>Probability of Occurance</th>
+                    <td>Risk Description</td>
+                    <th>Project Impact</th>
+                    <th>Symptons</th>
+                    <th>Risk Reponse Strategy</th>
+                    <th>Contigency Plan</th>
+                    <th>Project</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CurrentStatus</td>
+                            <td>@item.RiskImpact</td>
+                            <td>@item.ProbabilityOfOccurrence</td>
+                            <td>@item.RiskDescription</td>
+                            <td>@item.ProjectImpact</td>
+                            <td>@item.Symptoms</td>
+                            <td>@item.RiskResponseStrategy</td>
+                            <td>@item.ContingencyPlan</td>
+                            <td>@item.Project.Title</td>
+                            <td>
+                                @*<a href="" title="delete"><span class="glyphicon glyphicon-trash"></span></a>*@
+                                @Html.ActionLink("delete", "DeleteRiskRegister", "RiskRegister", new { id = item.Id }, new { onclick = "return confirm('Are you sure you wish to delete this?')" })
+                                <a href="~/RiskRegister/EditRiskRegister/@item.Id" title="edit"><span class="glyphicon glyphicon-pencil"></span></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#addRiskArea').click(function () {
+            var count = $("#riskArea > div").length;
+            $('#riskArea').append("<div id='" + count + "'><input type='text' id='value' name='RiskArea" + (count + 1) + "' class='form-control'/><button onclick=remove(" + count + ") type='buton'>Remove</button><div>");
+        });
+    });
+
+    function remove(id) {
+        $("#" + id).remove();
+    }
+</script>

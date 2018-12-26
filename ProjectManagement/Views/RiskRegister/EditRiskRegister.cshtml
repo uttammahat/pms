@@ -1,0 +1,107 @@
+﻿@model ProjectManagement.Models.RiskRegister
+@{
+    ViewBag.Title = "EditRiskRegister";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            RISK REGISTER
+        </div>
+
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            @using (Html.BeginForm("UpdateRiskRegister", "RiskRegister", FormMethod.Post, new { enctype = "multipart/form-data", data_toggle = "validator" }))
+            {
+                <div class="col-md-12 form-fill">
+                    <input type="hidden" name="ProjectId" value="@Model.ProjectId" />
+                    <input type="hidden" name="Id" value="@Model.Id"/>
+                    <div class="col-md-8">
+                        Current Status<br>
+                        <select class="form-control" id="CurrentStatus" name="CurrentStatus">
+                            <option value="true" selected>Open</option>
+                            <option value="false">Close</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Risk Impact<br>
+                        <select class="form-control" id="RiskImpact" name="RiskImpact">
+                            <option value="High" selected>High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Probability of Occurrence<br>
+                        <select class="form-control" id="ProbabilityOfOccurrence" name="ProbabilityOfOccurrence">
+                            <option value="High" selected>High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Risk Description<br>
+                        <textarea class="form-control" id="RiskDescription" name="RiskDescription">@Model.RiskDescription</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Project Impact<br>
+                        <input type="text" class="form-control" id="ProjectImpact" required="required" name="ProjectImpact" value="@Model.RiskImpact">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Symptoms/ Triggers of Risk<br>
+                        <textarea class="form-control" id="Symptoms" name="Symptoms">@Model.Symptoms</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Risk Response Strategy<br>
+                        <select class="form-control" id="RiskResponseStrategy" name="RiskResponseStrategy">
+                            <option value="Acceptance" selected>Acceptance</option>
+                            <option value="Avoidance">Avoidance</option>
+                            <option value="Contingency">Contingency</option>
+                            <option value="Mitigation">Mitigation</option>
+                            <option value="Transfer">Transfer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Response Strategy<br>
+                        <input type="text" class="form-control" id="ResponseStrategy" required="required" name="ResponseStrategy" value="@Model.ResponseStrategy">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-8">
+                        Contingency Plan<br>
+                        <input type="text" class="form-control" id="ContingencyPlan" required="required" name="ContingencyPlan" value="@Model.ContingencyPlan">
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-fill">
+                    <div class="col-md-4 button-form">
+                        <input type="submit" id="btnSave" name="btnSave" class="create-acc" value="UPDATE" />
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+

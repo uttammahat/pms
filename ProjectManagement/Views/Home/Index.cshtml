@@ -1,0 +1,89 @@
+﻿@model List<ProjectManagement.Models.Project>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<style>
+    .canvasjs-chart-container {
+        height: 1px;
+    }
+</style>
+
+<script>
+    window.onload = function () {
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+        //exportEnabled: true,
+        animationEnabled: true,
+	    theme: "light2", // "light1", "light2", "dark1", "dark2"
+	    title: {
+		    text: "Number of Employees under Each Manager"
+	    },
+	    axisY: {
+		    title: "No. of Employees"
+	    },
+	    data: [{
+		    type: "column",
+		    dataPoints: @Html.Raw(ViewBag.DataPoints)
+	    }]
+    });
+
+        chart.render();
+
+
+        //pie chat for project status
+        var pieChart = new CanvasJS.Chart("pieChart", {
+	    theme: "light1", // "light1", "light2", "dark1", "dark2"
+	    //animationEnabled: true,
+	    title: {
+		    text: "Project Status"
+	    },
+	    //subtitles: [{
+		   // text: "Q2, 2016"
+	    //}],
+	    data: [{
+		    type: "pie",
+		    startAngle: 180,
+		    toolTipContent: "<b>{label}</b>: {y}%",
+		    showInLegend: "true",
+		    legendText: "{label}",
+		    indexLabel: "{label} - {y}%",
+		    dataPoints: @Html.Raw(ViewBag.ProjectStatus)
+	    }]
+    });
+        pieChart.render();
+
+    }
+</script>
+
+<div class="index-page page-content">
+    <div class="container" style="display: none;">
+        <div class="col-md-12 head">
+            <h1>this is index page</h1>
+        </div>
+
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            <div class="col-md-12 form-fill">
+                <div class="col-md-8">
+                    <div class="list-group">
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <a href="~/Project/ViewProjectDetails/@Model[i].Id" class="list-group-item"><span style="float: left;margin-right: 10px" class="badge">@(i + 1)</span>@Model[i].Title</a>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="~/Project/AddProject" id="btnSave" name="btnSave" class="create-acc">ADD NEW PROJECT</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+        <div id="pieChart" style="height: 370px; margin-top: 340px; width: 100%;"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    </div>
+</div>

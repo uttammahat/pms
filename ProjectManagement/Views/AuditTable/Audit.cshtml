@@ -1,0 +1,40 @@
+﻿@model List<ProjectManagement.Models.AuditTable>
+@{
+    ViewBag.Title = "Audit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid" style="width:100%;">
+    <div style="background: #f8f8f8; border-radius: 4px;">
+        <div class="col-md-12 headd">
+            AUDIT TABLE
+        </div>
+        <div id="London" class="tabcontent active" style="display:block; width:65%; margin-left:10px;">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>AuditDate</th>
+                        <th>AuditUser</th>
+                        <th>Operation</th>
+                        <th>TableName</th>
+                        <th>ColumnName</th>
+                        <th>OldValue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.AuditDate</td>
+                            <td>@item.AuditUser</td>
+                            <td>@item.Operation</td>
+                            <td>@item.TableName</td>
+                            <td>@item.ColumnName</td>
+                            <td>@item.OldValue</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

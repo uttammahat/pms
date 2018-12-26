@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5504820e0f3148689fc3c61de953645c" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectManagementModel.AddressDetail" Width="1.5" PointX="8" PointY="30" />
+        <EntityTypeShape EntityType="ProjectManagementModel.Client" Width="1.5" PointX="5.25" PointY="40.125" />
+        <EntityTypeShape EntityType="ProjectManagementModel.Contractor" Width="1.5" PointX="10.25" PointY="27.625" />
+        <EntityTypeShape EntityType="ProjectManagementModel.Department" Width="1.5" PointX="3.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ProjectManagementModel.Employee" Width="1.5" PointX="6" PointY="8.75" />
+        <EntityTypeShape EntityType="ProjectManagementModel.Project" Width="1.5" PointX="3" PointY="21.25" />
+        <EntityTypeShape EntityType="ProjectManagementModel.ProjectCategory" Width="1.5" PointX="0.75" PointY="20.5" />
+        <EntityTypeShape EntityType="ProjectManagementModel.ProjectDetail" Width="1.5" PointX="5.25" PointY="55.125" />
+        <EntityTypeShape EntityType="ProjectManagementModel.ProjectMilestone" Width="1.5" PointX="8.25" PointY="20.75" />
+        <EntityTypeShape EntityType="ProjectManagementModel.ProjectStatu" Width="1.5" PointX="0.75" PointY="26.875" />
+        <EntityTypeShape EntityType="ProjectManagementModel.ProjectTeam" Width="1.5" PointX="8.25" PointY="17.5" />
+        <EntityTypeShape EntityType="ProjectManagementModel.ProjectTeamResponsibilite" Width="1.5" PointX="11.25" PointY="23" />
+        <EntityTypeShape EntityType="ProjectManagementModel.ProjectTeamRole" Width="1.5" PointX="11.25" PointY="19" />
+        <EntityTypeShape EntityType="ProjectManagementModel.ProjectType" Width="1.5" PointX="0.75" PointY="23.75" />
+        <EntityTypeShape EntityType="ProjectManagementModel.RiskArea" Width="1.5" PointX="7.5" PointY="27.5" />
+        <EntityTypeShape EntityType="ProjectManagementModel.RiskRegister" Width="1.5" PointX="5.25" PointY="26.125" />
+        <EntityTypeShape EntityType="ProjectManagementModel.TaskDependency" Width="1.5" PointX="10.5" PointY="15.5" />
+        <EntityTypeShape EntityType="ProjectManagementModel.TeamLead" Width="1.5" PointX="5.25" PointY="21.875" />
+        <EntityTypeShape EntityType="ProjectManagementModel.TechnologyPlatform" Width="1.5" PointX="5.25" PointY="15.875" />
+        <AssociationConnector Association="ProjectManagementModel.FK_Contractor_Address" />
+        <AssociationConnector Association="ProjectManagementModel.FK_Client_Project" />
+        <AssociationConnector Association="ProjectManagementModel.FK_Contractor_Project" />
+        <AssociationConnector Association="ProjectManagementModel.FK_Employee_Department" />
+        <AssociationConnector Association="ProjectManagementModel.FK_ProjectMilestone_Employee" />
+        <AssociationConnector Association="ProjectManagementModel.FK_ProjectTeam_Employee" />
+        <AssociationConnector Association="ProjectManagementModel.FK_ProjectTeamResponsibilites_Employee" />
+        <AssociationConnector Association="ProjectManagementModel.FK_ProjectTeamRole_Employee" />
+        <AssociationConnector Association="ProjectManagementModel.FK_TeamLead_Employee" />
+        <AssociationConnector Association="ProjectManagementModel.FK_Project_ProjectCategory" />
+        <AssociationConnector Association="ProjectManagementModel.FK_Project_ProjectStatus" />
+        <AssociationConnector Association="ProjectManagementModel.FK_Project_ProjectType" />
+        <AssociationConnector Association="ProjectManagementModel.FK_ProjectDetails_Project" />
+        <AssociationConnector Association="ProjectManagementModel.FK_ProjectMilestone_Project" />
+        <AssociationConnector Association="ProjectManagementModel.FK_ProjectTeam_Project" />
+        <AssociationConnector Association="ProjectManagementModel.FK_ProjectTeamResponsibilites_Project" />
+        <AssociationConnector Association="ProjectManagementModel.FK_ProjectTeamRole_Project" />
+        <AssociationConnector Association="ProjectManagementModel.FK_RiskRegister_Project" />
+        <AssociationConnector Association="ProjectManagementModel.FK_TeamLead_Project" />
+        <AssociationConnector Association="ProjectManagementModel.FK_TechnologyPlatform_Project" />
+        <AssociationConnector Association="ProjectManagementModel.FK_TaskDependency_ProjectMilestone" />
+        <AssociationConnector Association="ProjectManagementModel.FK_TaskDependency_Task" />
+        <AssociationConnector Association="ProjectManagementModel.FK_RiskArea_RiskRegister" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
